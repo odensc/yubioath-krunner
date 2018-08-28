@@ -12,6 +12,7 @@ Hacked this together in a couple hours, so PRs or suggestions are welcome.
 * python3-dbus
 * python3-fuzzywuzzy
 * python3-gobject
+* python3-levenshtein
 * libnotify
 * yubikey-manager (ykman)
 
