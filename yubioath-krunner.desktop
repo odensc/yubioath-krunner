@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=YubiOATH
+Comment=Yubico Authenticator KRunner plugin
+X-KDE-ServiceTypes=Plasma/Runner
+Type=Service
+Icon=internet-web-browser
+X-KDE-PluginInfo-Author=Oden S.
+X-KDE-PluginInfo-Email=hello@odensc.me
+X-KDE-PluginInfo-Name=yubioath
+X-KDE-PluginInfo-Version=1.0.0
+X-KDE-PluginInfo-License=LGPL
+X-KDE-PluginInfo-EnabledByDefault=true
+X-Plasma-API=DBus
+X-Plasma-DBusRunner-Service=me.odensc.yubioath
+X-Plasma-DBusRunner-Path=/yubioath
