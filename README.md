@@ -27,7 +27,6 @@ Or, on anything else:
 ./install.sh
 ```
 
-
 ## Usage
 
 Simply search for the account name, then hit enter (or click) to copy the code.

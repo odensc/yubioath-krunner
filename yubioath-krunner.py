@@ -30,7 +30,7 @@ class Runner(dbus.service.Object):
     def get_code(self, cred_id):
         result = subprocess.run(["ykman", "oath", "code"], stdout=subprocess.PIPE)
         codes = result.stdout.decode()
-        return re.search("{} +(\d+)".format(cred_id), codes).groups()[0].strip()
+        return re.search("{} +(\d+)".format(cred_id), codes).groups()[0]
 
     @dbus.service.method(iface, out_signature='a(sss)')
     def Actions(self, msg):
@@ -52,7 +52,7 @@ class Runner(dbus.service.Object):
     @dbus.service.method(iface, in_signature='ss')
     def Run(self, matchId, actionId):
         code = self.get_code(matchId)
-        subprocess.run("echo '{}' | xclip -selection clipboard".format(code), shell=True)
+        subprocess.run("echo -n '{}' | xclip -selection clipboard".format(code), shell=True)
         subprocess.run(["notify-send", "--urgency=low", "--expire-time=2000", "--icon=nm-vpn-active-lock", "YubiOATH", "Code copied to clipboard"])
         # Refresh credentials.
         self.credentials = self.get_credentials()
