@@ -15,6 +15,7 @@ Hacked this together in a couple hours, so PRs or suggestions are welcome.
 * python3-levenshtein
 * libnotify
 * yubikey-manager (ykman)
+* xclip
 
 ## Installation
 
@@ -25,3 +26,10 @@ Or, on anything else:
 ```bash
 ./install.sh
 ```
+
+
+## Usage
+
+Simply search for the account name, then hit enter (or click) to copy the code.
+
+**Hot tip:** If you've added a new account, just copy a code from any account to refresh the credential list.

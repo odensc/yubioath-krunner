@@ -49,11 +49,13 @@ class Runner(dbus.service.Object):
 
         return results
 
-    @dbus.service.method(iface, in_signature='ss',)
+    @dbus.service.method(iface, in_signature='ss')
     def Run(self, matchId, actionId):
         code = self.get_code(matchId)
         subprocess.run("echo '{}' | xclip -selection clipboard".format(code), shell=True)
         subprocess.run(["notify-send", "--urgency=low", "--expire-time=2000", "--icon=nm-vpn-active-lock", "YubiOATH", "Code copied to clipboard"])
+        # Refresh credentials.
+        self.credentials = self.get_credentials()
 
         return
 
