@@ -21,8 +21,8 @@ class Runner(dbus.service.Object):
         return [
             {
                 "id": cred,
-                "issuer": cred.split(":")[0],
-                "account_name": cred.split(":")[1]
+                "issuer": ":" in cred and cred.split(":")[0] or "",
+                "account_name": ":" in cred and cred.split(":")[1] or cred
             }
             for cred in result.stdout.decode().split("\n")[:-1]
         ]
