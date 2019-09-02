@@ -28,9 +28,9 @@ class Runner(dbus.service.Object):
         ]
 
     def get_code(self, cred_id):
-        result = subprocess.run(["ykman", "oath", "code"], stdout=subprocess.PIPE)
-        codes = result.stdout.decode()
-        return re.search("{} +(\d+)".format(cred_id), codes).groups()[0]
+        result = subprocess.run(["ykman", "oath", "code", cred_id], stdout=subprocess.PIPE)
+        code = result.stdout.decode()
+        return re.search(" (\d+)$", code).groups()[0]
 
     @dbus.service.method(iface, out_signature='a(sss)')
     def Actions(self, msg):
