@@ -6,7 +6,6 @@ from fuzzywuzzy import process
 import subprocess
 from dbus.mainloop.glib import DBusGMainLoop
 import configargparse
-from pprint import pprint
 
 APP_NAME = "yubioath-krunner"
 CONFIG_FILE_NAME = "settings.cfg"
@@ -44,10 +43,11 @@ class Runner(dbus.service.Object):
 
     @dbus.service.method(iface, in_signature='s', out_signature='a(sssida{sv})')
     def Match(self, query):
-        if options.prefix and query[0:len(options.prefix)-1] == options.prefix:
+        if query[0:len(self.options.prefix)] == self.options.prefix:
             query = query[len(options.prefix):]
         else:
             return []
+
         fuzzy_credentials = process.extract(query, [cred["id"] for cred in self.credentials], limit=3)
         results = []
 
