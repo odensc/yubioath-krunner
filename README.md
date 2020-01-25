@@ -8,15 +8,16 @@ Hacked this together in a couple hours, so PRs or suggestions are welcome.
 
 ## Dependencies
 
-* python3
-* python3-dbus
-* python3-fuzzywuzzy
-* python3-gobject
-* python3-levenshtein
-* libnotify
-* yubikey-manager (ykman)
-* xclip
-* xdotool
+- python (3)
+- python-configargparse
+- python-dbus
+- python-fuzzywuzzy
+- python-gobject
+- python-levenshtein
+- libnotify
+- yubikey-manager (ykman)
+- xclip
+- xdotool
 
 ## Installation
 
@@ -31,11 +32,29 @@ Or, on anything else:
 ## Usage
 
 Simply search for the account name, then hit enter (or click) to copy the code.
-Code can also be typed automatically in the active window by set `type: True` and `copy: False` in the user specific config file ~/.config/yubioath-krunner/settings.cfg
-or system wide in /etc/yubioath-krunner/settings.cfg
 
-You can also set a prefix word in the settings.cfg to trigger search. This can be useful if you don't want to clutter krunner search menu
+The code can also be typed automatically in the active window by setting `type: True` and `copy: False` in the configuration file.
+
+You can also set a prefix word in the configuration file, used to trigger YubiOATH search. This can be useful if you don't want to clutter the krunner menu.
 
 **Hot tip:** If you've added a new account, just copy a code from any account to refresh the credential list.
 
-**Wayland users:** If you are using Wayland, directly typing code with xdotool won't work because it's doesn't support Wayland.
+**Wayland users:** If you are using Wayland, this script probably won't work because it requires xclip and xdotool.
+
+## Configuration file
+
+Located at `~/.config/yubioath-krunner/config` per-user, or system-wide at `/etc/yubioath-krunner/config`
+
+### Default config
+
+```
+# Prefix that needs to be typed to trigger YubiKey code search
+# For example, you can set it to "mfa" to trigger when you search "mfa google"
+# prefix: mfa
+
+# Enable or disable copying codes to the clipboard
+copy: True
+
+# Enable or disable typing codes directly into the active window
+type: False
+```

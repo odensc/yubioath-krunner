@@ -8,7 +8,7 @@ from dbus.mainloop.glib import DBusGMainLoop
 import configargparse
 
 APP_NAME = "yubioath-krunner"
-CONFIG_FILE_NAME = "settings.cfg"
+CONFIG_FILE_NAME = "config"
 
 DBusGMainLoop(set_as_default=True)
 
@@ -64,7 +64,7 @@ class Runner(dbus.service.Object):
         code = self.get_code(matchId)
         if self.options.copy:
             subprocess.run("echo -n '{}' | xclip -selection clipboard".format(code), shell=True)
-            subprocess.run(["notify-send", "--urgency=low", "--expire-time=2000", "--icon=nm-vpn-active-lock", "YubiOATH", "Code copyed to clipboard!"])
+            subprocess.run(["notify-send", "--urgency=low", "--expire-time=2000", "--icon=nm-vpn-active-lock", "YubiOATH", "Code copied to clipboard!"])
         if self.options.type:
             subprocess.run(f"xdotool type {code}", shell=True)
             subprocess.run(["notify-send", "--urgency=low", "--expire-time=2000", "--icon=nm-vpn-active-lock", "YubiOATH", "Code typed!"])
