@@ -22,7 +22,7 @@ class Runner(dbus.service.Object):
         dbus.service.Object.__init__(self, dbus.service.BusName("me.odensc.yubioath", dbus.SessionBus()), objpath)
 
     def get_credentials(self):
-        result = subprocess.run(["ykman", "oath", "list"], stdout=subprocess.PIPE)
+        result = subprocess.run(["ykman", "oath", "accounts", "list"], stdout=subprocess.PIPE)
         return [
             {
                 "id": cred,
@@ -33,7 +33,7 @@ class Runner(dbus.service.Object):
         ]
 
     def get_code(self, cred_id):
-        result = subprocess.run(["ykman", "oath", "code", cred_id], stdout=subprocess.PIPE)
+        result = subprocess.run(["ykman", "oath", "accounts", "code", cred_id], stdout=subprocess.PIPE)
         code = result.stdout.decode()
         return re.search(" (\d+)$", code).groups()[0]
 
